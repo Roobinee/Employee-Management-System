@@ -1,0 +1,154 @@
+﻿
+
+@{
+    ViewBag.Title = "ViewEmployees";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    Body {
+        background-color: #FEF0E3;
+    }
+
+    table {
+        width: 100%;
+        align: center;
+        table-layout: fixed;
+        align:Right;
+    }
+
+    .table-head {
+        background-color: grey;
+    @*align:justify;*@
+    }
+
+    .table-values {
+        height: 300px;
+        overflow-x: auto;
+        margin-top: 0px;
+    @*align:justify;*@border: 1px solid rgba(255, 255, 255, 0.3);
+
+    }
+
+    tr:hover {
+        background-color: grey;
+        color: white;
+        cursor: pointer;
+    }
+
+    .on-click:hover {
+        background-color: aliceblue;
+    }
+
+    th {
+        font-weight: 500;
+        font-size: 15px;
+    }
+
+    td {
+        padding-bottom: 5px;
+        font-weight: 500;
+        font-size: 15px;
+    }
+
+    .b1 {
+        background-color: beige;
+    }
+
+    .b1:onclick {
+        background-color: black;
+    }
+</style>
+
+<center>
+    <h2>View Employee</h2>
+</center>
+@* <button>Add</button> *@
+@* <a asp-area="" asp-controller="Admin" asp-action="AddEmployee"><button>Add Employee</button></a>
+    <br> *@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<table>
+    <tr>
+        <td><input type="button" value="Add Employee" onclick="location.href='@Url.Action("AddEmployee", "User")'" /></td>
+        <td style="border: 1px solid white;">
+            <form method="post" action="UpdateEmployeeForm">
+                <input type="hidden" id="UpdateId" name="Id"></input>
+                <button type="submit" class="edit" id="disable1" disabled>Edit Employee</button>
+            </form>
+        </td>
+        <td style="border: 1px solid white;">
+            <form method="post" action="DeleteEmployee">
+                <input type="hidden" id="DeleteId" name="Id"></input>
+                <button type="submit" class="delete" id="disable2" disabled>Delete Employee</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<br>
+<br>
+<br>
+<div class="table-head">
+    <table>
+        <tr align="center">
+            <th align="center">Select</th>
+            <th align="center">EmployeeID</th>
+            <th align="center">FirstName</th>
+            <th align="center">LastName</th>
+            <th align="center">Title</th>
+            <th align="center">TitleOfCourtesy</th>
+            <th align="center">BirthDate</th>
+            <th align="center">Address</th>
+            <th align="center">City</th>
+            <th align="center">Country</th>
+            <th align="center">HomePhone</th>
+        </tr>
+    </table>
+</div>
+<div class="table-values">
+    <table>
+        @foreach (MyProject1.Models.ViewEmployeeModel item in Model)
+        {
+            <tr align="center">
+                <td align="center"><input type="checkbox" id="@item.EmployeeID" onclick="getid(this)"></td>
+                <td align="center">@item.EmployeeID</td>
+                <td align="center">@item.FirstName</td>
+                <td align="center">@item.LastName</td>
+                <td align="center">@item.Title</td>
+                <td align="center">@item.TitleOfCourtesy</td>
+                <td align="center">@item.BirthDate</td>
+                <td align="center">@item.Address</td>
+                <td align="center">@item.City</td>
+                <td align="center">@item.Country</td>
+                <td align="center">@item.HomePhone</td>
+            </tr>
+        }
+    </table>
+</div>
+
+<script>
+    const list = [];
+    function getid(num) {
+        if (num.checked == true) {
+            list.push(num.id);
+        }
+        else {
+            list.splice(list.indexOf(num.id), 1);
+        }
+        Length = list.length;
+        if (Length == 0) {
+            document.getElementById("disable1").disabled = true;
+            document.getElementById("disable2").disabled = true;
+        }
+        else if (Length == 1) {
+            document.getElementById("disable1").disabled = false;
+            document.getElementById("disable2").disabled = false;
+        }
+        else if (Length > 1) {
+            document.getElementById("disable1").disabled = true;
+            document.getElementById("disable2").disabled = false;
+        }
+        var Index = list[0];
+        document.getElementById("UpdateId").setAttribute("value", Index);
+        document.getElementById("DeleteId").setAttribute("value", list);
+    }
+</script>

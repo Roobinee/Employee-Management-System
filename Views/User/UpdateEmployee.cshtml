@@ -1,0 +1,95 @@
+﻿@model MyProject1.Models.UpdateEmployeeModel
+
+@{
+    ViewBag.Title = "UpdateEmployee";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    Body {
+        background-color: #FEF0E3;
+    }
+</style>
+<h3>@ViewData["Title"]</h3>
+<br>
+<form action="UpdateEmployee" method="post">
+    <table>
+        <tr>
+            <td>@Html.LabelFor(model => model.FirstName) </td>&nbsp;&nbsp;
+            <td>@Html.TextBox("FirstName", @TempData["FirstName"])</td>
+            <td>
+                @Html.ValidationMessageFor(model => model.FirstName)
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.LastName) </td>&nbsp;&nbsp;
+            <td>@Html.TextBox("LastName", @TempData["LastName"])</td>
+
+            <td></td>
+            <td>
+                @Html.ValidationMessageFor(model => model.LastName)
+            </td>
+        </tr>
+        <td>
+            @Html.ValidationMessageFor(model => model.LastName)
+        </td>
+        <tr>
+            <td>@Html.LabelFor(model => model.Title) </td>&nbsp;&nbsp;
+            <td>@Html.TextBox("Title", @TempData["Title"])</td>
+            <td></td>
+        </tr>
+        <tr></tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.TitleOfCourtesy) </td>
+            <td>@Html.TextBox("TitleOfCourtesy", @TempData["TitleOfCourtesy"])</td>
+            <td></td>
+        </tr>
+        <tr></tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.BirthDate) </td>
+            <td>@Html.TextBox("BirthDate", @TempData["BirthDate"])</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Address) </td>&nbsp;&nbsp;
+            <td>@Html.TextBox("Address", @TempData["Address"])</td>
+            <td></td>
+        </tr>
+        <tr></tr>
+
+        <tr>
+            <td>@Html.LabelFor(model => model.City) </td>&nbsp;&nbsp;
+            <td>
+                @Html.TextBox("City", @TempData["City"])
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td>@Html.LabelFor(model => model.Country) </td>&nbsp;&nbsp;
+        <td>
+            @Html.TextBox("Country", @TempData["Country"])
+    </td>
+    <td></td>
+</tr>
+<tr></tr>
+<tr>
+    <td>@Html.LabelFor(model => model.HomePhone) </td>&nbsp;&nbsp;
+    <td>@Html.TextBox("HomePhone", @TempData["HomePhone"])</td>
+    <td></td>
+</tr>
+<tr><td>@Html.ValidationSummary(false)</td></tr>
+<tr>
+    <td><button type="submit" class="button" id="log">Update</button><br></td>
+    <br>
+    <td></td>
+</tr>
+<tr></tr>
+        &nbsp;
+<br>
+<br>
+</table>
+</form>
+

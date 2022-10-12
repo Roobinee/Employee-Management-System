@@ -1,0 +1,65 @@
+﻿@model MyProject1.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    Body {
+        background-color: #FEF0E3;
+    }
+
+    .loginDiv {
+        width: 350px;
+        height: 280px;
+        margin-top: 100px;
+        color: hsl(0 0 100);
+        border: none;
+        border-radius: 30px;
+        background-color: grey;
+        text-align: center;
+        margin: auto;
+        box-shadow: : 5px 20px 50px #000;
+    }
+
+    #log {
+        width: 150px;
+        height: 30px;
+        border: none;
+        border-radius: 17px;
+        padding-left: 7px;
+        font-size: large;
+    }
+
+    .field-validation-error {
+        color: red;
+    }
+
+    .paragraph {
+        color: red;
+    }
+
+    h3 {
+        color: #111111;
+    }
+</style>
+<br>
+<br>
+<div class="loginDiv" align="center">
+    <br>
+    <h3>@ViewBag.Title</h3>
+    <br>
+    @using (@Html.BeginForm())
+    {
+        @Html.LabelFor(model => model.UserName) @:&nbsp;&nbsp; @Html.TextBoxFor(model => model.UserName)<br>
+        @Html.ValidationMessageFor(model => model.UserName)<br>
+        @Html.LabelFor(model => model.Password) @:&nbsp;&nbsp; @Html.PasswordFor(model => model.Password)<br>
+        @Html.ValidationMessageFor(model => model.Password)<br>
+        <div class="paragraph">
+            <p>@ViewBag.error</p>
+        </div>
+        @Html.ValidationSummary(false)
+        <input type="submit" name="login" id="log" value="Login">
+    }
+</div>
+

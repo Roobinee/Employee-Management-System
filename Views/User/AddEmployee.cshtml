@@ -1,0 +1,105 @@
+﻿@model MyProject1.Models.AddEmployeeModel
+
+@{
+    ViewBag.Title = "Add Employee";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    Body {
+        background-color: #FEF0E3;
+    }
+</style>
+
+<h2>@ViewData["Title"]</h2>
+<form action="AddEmployee" method="post">
+    <table>
+        <tr>
+            <td>@Html.LabelFor(m => m.FirstName) </td>&nbsp;&nbsp;
+            <td> @Html.TextBoxFor(m => m.FirstName)</td>
+            <td>
+                <p>@Html.ValidationMessageFor(m => m.FirstName)</p>
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.LastName) </td>&nbsp;&nbsp;
+            <td>@Html.TextBoxFor(m => m.LastName)</td>
+            <td>
+                <p>@Html.ValidationMessageFor(m => m.LastName)</p>
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.Title) </td>
+
+            @* @foreach (var item in ListModel.TitleList)
+                {
+                <option value="@item"> @item </option>
+                } *@
+            <td>
+                <select name="Title">
+                    @foreach (var item in MyProject1.Models.AddEmployeeModel.TitleList)
+                    {
+                        <option value="@item"> @item </option>
+                    }
+
+                </select>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.TitleOfCourtesy) </td>&nbsp;&nbsp;
+            <td>
+                <select name="TitleOfCourtesy">
+                    @foreach (var item in MyProject1.Models.AddEmployeeModel.TitleOfCourtesyList)
+                    {
+                        <option value="@item"> @item </option>
+                    }
+
+                </select>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.BirthDate) </td>&nbsp;&nbsp;
+            <td>
+                <input type="date" name="BirthDate" min="1950-01-01"
+                       max="2002-12-31" />
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.Address) </td>&nbsp;&nbsp;
+            <td>@Html.TextBoxFor(m => m.Address)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.City) </td>&nbsp;&nbsp;
+            <td>@Html.TextBoxFor(m => m.City)</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.Country) </td>&nbsp;&nbsp;
+            <td>@Html.TextBoxFor(m => m.Country)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.HomePhone) </td>&nbsp;&nbsp;
+            <td>@Html.TextBoxFor(m => m.HomePhone)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationSummary(false)</td>
+            <br>
+        </tr>
+
+        <tr>
+            <td><button type="submit" class="button" align="left">Submit</button><br></td>
+            <td></td>
+        </tr>
+        &nbsp;
+        <br>
+    </table>
+   </form>
+
